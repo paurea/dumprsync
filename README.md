@@ -25,7 +25,7 @@ To do this, two files are provided, ./systemd/dump.service and ./systemd/dump.ti
 which configure the unit and the timer for systemd respectively.
 
 There is very little redundancy in the dump, so, if you are a little bit paranoid (as you should be
-with backups) you should run checkpoints less often than the regular backup (for example, once a month).
+with backups) you checkpoint, but less often than the regular backup (for example, once a month).
 A check point is a clean copy of the directory instead of using hard links. This effectively duplicates the space of the last
 dump copy. There is also a soft link in the dump pointing to it without
 the root name. The script which creates the checkpoint is scripts/chkptme and the systemd configuration
