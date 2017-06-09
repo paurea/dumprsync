@@ -1,7 +1,10 @@
 #simple dump made with rsync
 
 The backup system consists of three scripts (under ./scripts) and some configuration files
-(under ./systemd).
+(under ./systemd). Even though it is implemented using systemd, it should be trivial to run
+the commands from crontab or to use any other method with very little change (change
+the systemd-cat in the script to whatever logging the sytem uses)
+
 The main script is scripts/dumpme. Dumpme takes a snapshot of the
 root of the origin system (MAIN) and creates a directory under the dump filesystem
 (DUMP) in a directory (and all the tree if needed) of the form
