@@ -91,9 +91,9 @@ The logs can be monitored continuously with
 
 The commands to navigate the dump can be found at:
 
-	[commands to navigate the dump] (https://github.com/paurea/dump)
+[commands to navigate the dump] (https://github.com/paurea/dump)
 
 I got many of the ideas from:
 
-	[time machine with rsync](https://blog.interlinked.org/tutorials/rsync_time_machine.html)
-	[plan 9 history](http://man.cat-v.org/plan_9/1/history)
+[time machine with rsync](https://blog.interlinked.org/tutorials/rsync_time_machine.html)
+[plan 9 history](http://man.cat-v.org/plan_9/1/history)
