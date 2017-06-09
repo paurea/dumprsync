@@ -1,0 +1,22 @@
+#!/bin/sh
+
+DUMP=/dump
+
+year=`date "+%Y"`
+day=`date "+%m%d"`
+hour=`date "+%H%M"`
+
+DUMPPATH="$year/$day"
+
+echo Start chkpt "$DUMP/$DUMPPATH/$hour_chk"|systemd-cat -p info
+
+mkdir -p $DUMP/$DUMPPATH
+
+
+cp -aH "$DUMP/current" "$DUMP/$DUMPPATH/$hour"_chk && (rm -f $DUMP/current_chk \
+  && ln -s "$DUMP/$DUMPPATH/$hour"_chk $DUMP/current_chk\
+&& rm -f $DUMP/current \
+  && ln -s "$DUMP/$DUMPPATH/$hour"_chk $DUMP/current) )
+
+
+echo Done chkpt "$DUMP/$DUMPPATH/$hour_chk"|systemd-cat -p info

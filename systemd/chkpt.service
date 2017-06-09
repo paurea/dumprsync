@@ -1,0 +1,9 @@
+[Unit]
+Description=Dump service, periodical
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c "$$HOME/bin/dumpme"
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,13 @@
+[Unit]
+Description=Run checkpointing monthly
+RefuseManualStart=false
+RefuseManualStop=false
+
+[Timer]
+Persistent=false
+OnBootSec=10min
+OnUnitActiveSec=1month
+Unit=dump.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,29 @@
+#!/bin/sh
+
+MAIN=/newage/NEWAGE
+DUMP=/dump
+
+year=`date "+%Y"`
+day=`date "+%m%d"`
+hour=`date "+%H%M"`
+
+DUMPPATH="$year/$day"
+
+echo Start dumping "$DUMP/$DUMPPATH/$hour log in /tmp/$$_DUMP.log"|systemd-cat -p info
+
+mkdir -p $DUMP/$DUMPPATH
+
+
+(rsync -azP \
+  --delete \
+  --delete-excluded \
+  --exclude-from=$MAIN/.rsync/exclude \
+  --link-dest=$DUMP/current \
+  $MAIN "$DUMP/$DUMPPATH/$hour"_incomplete \
+  && (mv "$DUMP/$DUMPPATH/$hour"_incomplete "$DUMP/$DUMPPATH/$hour" \
+  && rm -f $DUMP/current \
+  && ln -s $DUMP/$DUMPPATH/$hour $DUMP/current)) > /tmp/$$_DUMP.log 2>&1
+
+grep -i '^[^/]*error' /tmp/$$_DUMP.log
+
+echo Done dumping "$DUMP/$DUMPPATH/$hour"|systemd-cat -p info
