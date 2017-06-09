@@ -3,7 +3,7 @@
 The backup system consists of three scripts (under ./scripts) and some configuration files
 (under ./systemd). Even though it is implemented using systemd, it should be trivial to run
 the commands from crontab or to use any other method with very little change (change
-the systemd-cat in the script to whatever logging the sytem uses)
+the systemd-cat in the script to whatever logging the sytem uses).
 
 The main script is scripts/dumpme. Dumpme takes a snapshot of the
 root of the origin system (MAIN) and creates a directory under the dump filesystem
@@ -90,7 +90,13 @@ The same can be done for chkpt.timer and chkpt.service.
 The logs can be monitored continuously with
 	
 	journalctl -f
-	
+
+What I normally do is, the client machine imports the /dump and /main filesystem using sshfs, with the dump
+read-only to prevent problems:
+
+	sshfs paurea@myfilesystem.bla.ble:/newage /newage
+	sshfs paurea@myfilesystem.bla.ble:/dump /dump -o ro
+
 
 I have also implemented [commands to navigate the dump.](https://github.com/paurea/dump)
 
