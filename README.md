@@ -91,8 +91,8 @@ The logs can be monitored continuously with
 
 The commands to navigate the dump can be found at:
 
-	https://github.com/paurea/dump.
+	(https://github.com/paurea/dump)
 
 I got many of the ideas from:
 
-	https://blog.interlinked.org/tutorials/rsync_time_machine.html
+	(https://blog.interlinked.org/tutorials/rsync_time_machine.html)
