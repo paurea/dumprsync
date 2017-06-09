@@ -89,11 +89,9 @@ The logs can be monitored continuously with
 	journalctl -f
 	
 
-The commands to navigate the dump can be found at:
-
-[commands to navigate the dump] (https://github.com/paurea/dump)
+[I hav also implemented commands to navigate the dump.](https://github.com/paurea/dump)
 
 I got many of the ideas from:
-
-[time machine with rsync](https://blog.interlinked.org/tutorials/rsync_time_machine.html)
+[plan 9 from Bell Labs, may be down](http://plan9.bell-labs.com/plan9)
 [plan 9 history](http://man.cat-v.org/plan_9/1/history)
+[Time machine with rsync](https://blog.interlinked.org/tutorials/rsync_time_machine.html)
