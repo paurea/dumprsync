@@ -24,10 +24,10 @@ from systemd by the user (not root). The files dump.service and dump.timer
 To do this, two files are provided, ./systemd/dump.service and ./systemd/dump.timer
 which configure the unit and the timer for systemd respectively.
 
-There is very little redundancy in the dump, so if you are a little bit paranoid (as you should be
-with backups) you would like that less often (for example, once a month) you make a completely
-clean copy of the directory instead of using hard links. This effectively duplicates the space of the last
-dump copy. We call this a check point. and there is also a soft link in the dump pointing to it without
+There is very little redundancy in the dump, so, if you are a little bit paranoid (as you should be
+with backups) you should run checkpoints less often than the regular backup (for example, once a month).
+A check point is a clean copy of the directory instead of using hard links. This effectively duplicates the space of the last
+dump copy. There is also a soft link in the dump pointing to it without
 the root name. The script which creates the checkpoint is scripts/chkptme and the systemd configuration
 units and timer are ./systemd/chkpt.service and ./systemd/chkpt.timer.
 
