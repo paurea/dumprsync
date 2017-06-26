@@ -35,7 +35,7 @@ mkdir -p "$DUMPSLAVE/$DUMPPATH"
   --link-dest="$DUMPSLAVE/current" \
   "$DUMP/$DUMPORIG/$lasthorig/$ROOTNAME" "$DUMPSLAVE/$DUMPPATH/$hour"_incomplete \
   && (mv "$DUMPSLAVE/$DUMPPATH/$hour"_incomplete "$DUMPSLAVE/$DUMPPATH/$hour" \
-  && rm -f $DUMPSLAVE/current \
+  && sync && sync &&  rm -f $DUMPSLAVE/current \
   && ln -s $DUMPSLAVE/$DUMPPATH/$hour $DUMPSLAVE/current)) > /tmp/$$_DUMP.log 2>&1
 
 grep -i '^[^/]*error' /tmp/$$_DUMP.log

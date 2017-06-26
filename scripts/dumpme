@@ -21,7 +21,7 @@ mkdir -p $DUMP/$DUMPPATH
   --link-dest=$DUMP/current \
   $MAIN "$DUMP/$DUMPPATH/$hour"_incomplete \
   && (mv "$DUMP/$DUMPPATH/$hour"_incomplete "$DUMP/$DUMPPATH/$hour" \
-  && rm -f $DUMP/current \
+  &&  sync && sync && rm -f $DUMP/current \
   && ln -s $DUMP/$DUMPPATH/$hour $DUMP/current)) > /tmp/$$_DUMP.log 2>&1
 
 grep -i '^[^/]*error' /tmp/$$_DUMP.log
