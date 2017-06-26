@@ -91,6 +91,26 @@ The logs can be monitored continuously with
 	
 	journalctl -f
 
+Of course, if the system has crontab instead of systemd (or a weird mix of both, like the
+raspberry pi), you can set up a user cron job:
+
+	crontab -e #(to edit the crontab)
+
+add a line with the job, for example, to run every day at 5 am:
+
+	0 5 * * * /home/paurea/bin/dumpslave
+
+to run the script every midnight or every hour at minute 0:
+
+	0 * * * * /home/paurea/bin/dumpme
+
+or every month the first day:
+
+	0 0 1 * * /home/paurea/bin/chkptme
+
+
+Usage from clients
+
 What I normally do is, the client machine imports the /dump and /main filesystem using sshfs, with the dump
 read-only to prevent problems:
 
