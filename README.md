@@ -1,4 +1,6 @@
-#simple dump made with rsync
+# Dumprsync
+
+A simple dump made with rsync.
 
 The backup system consists of three scripts (under ./scripts) and some configuration files
 (under ./systemd). Even though it is implemented using systemd, it should be trivial to run
