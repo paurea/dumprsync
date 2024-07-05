@@ -1,0 +1,19 @@
+[Unit]
+Description=Run dumpmob on start up
+
+Wants=network.target
+After=syslog.target network-online.target
+
+[Service]
+Type=simple
+User=paurea
+Group=paurea
+ExecStart=/usr/local/bin/dumpmob
+Restart=on-failure
+RestartSec=200
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
+
+
