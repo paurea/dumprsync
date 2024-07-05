@@ -1,0 +1,8 @@
+#!/bin/sh
+
+sudo umount /newage/NEWAGE
+sudo umount /dump
+
+sshfs paurea@bunmac.paurea.net:/media/paurea/00AEBC38AEBC27D4/NEWAGE /newage/NEWAGE
+sshfs paurea@bunmac.paurea.net:/media/paurea/dump /dump -o ro
+

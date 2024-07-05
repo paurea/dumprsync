@@ -1,0 +1,48 @@
+#!/bin/sh
+
+
+DUMP=/dump
+DUMPSLAVE=/dumpmob
+ROOTNAME=NEWAGE
+
+
+while ! [ -e /dump/current ]; do
+	sleep 100;
+done
+
+year=`date "+%Y"`
+day=`date "+%m%d"`
+hour=`date "+%H%M"`
+
+datefull=$((`date +%s` - 86400))
+yest=`date -d '@'$datefull "+%m%d"`
+
+DUMPPATH="$year/$day"
+DUMPORIG="$year/$yest"
+
+lho=`ls -d "$DUMP/$DUMPORIG/"*|sort -n|tail -1`
+lasthorig=`basename $lho`
+
+
+CURRPATH=`ls -ld $DUMP/current|awk '{print $11}'`
+
+echo Start dumping slave "$DUMP/$DUMPORIG/$lasthorig  from $CURRPATH to  $DUMPSLAVE/$DUMPPATH/$hour log in /tmp/$$_DUMP.log"|systemd-cat -p info
+
+
+mkdir -p "$DUMPSLAVE/$DUMPPATH"
+
+
+
+(rsync -azP \
+  --delete \
+  --delete-excluded \
+  --exclude-from=$DUMPSLAVE/.rsync/exclude \
+  --link-dest="$DUMPSLAVE/current" \
+  "$DUMP/$DUMPORIG/$lasthorig/$ROOTNAME" "$DUMPSLAVE/$DUMPPATH/$hour"_incomplete \
+  && (mv "$DUMPSLAVE/$DUMPPATH/$hour"_incomplete "$DUMPSLAVE/$DUMPPATH/$hour" \
+  && sync && sync &&  rm -f $DUMPSLAVE/current \
+  && ln -s $DUMPSLAVE/$DUMPPATH/$hour $DUMPSLAVE/current)) > /tmp/$$_DUMP.log 2>&1
+
+grep -i '^[^/]*error' /tmp/$$_DUMP.log
+
+echo Done dumping "$DUMPSLAVE/$DUMPPATH/$hour"|systemd-cat -p info

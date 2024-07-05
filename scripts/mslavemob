@@ -1,0 +1,11 @@
+#!/bin/sh
+
+#needs change to fstab
+# add:
+#/dumpmob	/dumpslave	none	uid=paurea,gid=paurea,ro,nosuid,nodev,relatime,user,allow_other,bind 0 0
+
+sudo umount /dumpslave
+
+mount /dumbmob /dumpslave
+
+

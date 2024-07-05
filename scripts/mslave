@@ -1,0 +1,6 @@
+#!/bin/sh
+
+sudo umount /dumpslave
+
+sshfs paurea@berry:/dumpslave /dumpslave -o ro
+
