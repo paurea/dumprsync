@@ -33,7 +33,7 @@ mkdir -p "$DUMPSLAVE/$DUMPPATH"
 
 
 
-(rsync -azP \
+(rsync -azHAXUNP \
   --delete \
   --delete-excluded \
   --exclude-from=$DUMPSLAVE/.rsync/exclude \

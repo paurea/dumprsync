@@ -14,7 +14,7 @@ echo Start dumping "$DUMP/$DUMPPATH/$hour log in /tmp/$$_DUMP.log"|systemd-cat -
 mkdir -p $DUMP/$DUMPPATH
 
 
-(rsync -azP \
+(rsync -azHAXUNP \
   --delete \
   --delete-excluded \
   --exclude-from=$MAIN/.rsync/exclude \
